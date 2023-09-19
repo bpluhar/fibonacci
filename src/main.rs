@@ -1,4 +1,4 @@
-use std::io;
+use std::{io, time::SystemTime};
 
 fn main() {
 
@@ -12,7 +12,10 @@ io::stdin()
 
 let x: u32 = input.trim().parse().expect("Not an int!");
 
+let now = SystemTime::now();
 fib(x);
+let delta = now.elapsed();
+println!("{:?}", delta);
 
 
 }
