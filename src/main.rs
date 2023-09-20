@@ -1,27 +1,16 @@
 use std::time::Duration;
-use std::{io, time::SystemTime};
+use std::time::SystemTime;
 use std::thread::sleep;
+use std::env;
+use thousands::Separable;
 
 fn main() {
 
-let mut input = String::new();
-let mut sleep: String = String::new();
+let args: Vec<String> = env::args().collect();
 
-println!("How many digits of fib() would you like to calculate?");
+let x: u32 = args[1].trim().parse().expect("Not an int!");
 
-io::stdin()
-    .read_line(&mut input)
-    .expect("Failed to read line!");
-
-let x: u32 = input.trim().parse().expect("Not an int!");
-
-println!("How many ms would you like to sleep between each calculation? (0 for none)");
-
-io::stdin()
-    .read_line(&mut sleep)
-    .expect("Failed to read line!");
-
-let y: u32 = sleep.trim().parse().expect("Not an int!");
+let y: u32 = args[2].trim().parse().expect("Not an int!");
 
 let now = SystemTime::now();
 fib(x, y);
@@ -46,7 +35,7 @@ fn fib(_num: u32, _sleep: u32) {
         sum = last + curr;
         last = curr;
         curr = sum;
-        print!("{}) {}\n", _i, &sum);
+        print!("{}) {}\n", _i, &sum.separate_with_commas());
         sleep(Duration::new(0, &_sleep * milliseconds))
     }
 }
