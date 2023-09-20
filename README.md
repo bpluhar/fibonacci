@@ -1,3 +1,3 @@
 # fibonacci
 
-![Example Image](https://i.imgur.com/MHc442r.gif)
+![Example Image](https://i.imgur.com/qYNJcGg.gif)
